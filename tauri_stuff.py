@@ -19,3 +19,16 @@ Trinkettwo = 15
 Wrist = 7
 Waist = 9
 
+DK = 6
+Druid = 11
+Hunter = 3
+Mage = 8
+Paladin = 2
+Priest = 5
+Rogue = 4
+Shaman = 7
+Warlock = 9
+Warrior = 1
+
+def isClass(playerdata, WOWclass):
+    return (playerdata['class'] == WOWclass)
