@@ -1,7 +1,13 @@
 
 professions_required_level = {
+    'Alchemy': 375,
+    'Blacksmithing': 375, 
+    'Enchanting': 375, 
     'Engineering': 375,
-    'Jewelcrafting': 450,
+    'Inscription': 375, 
+    'Jewelcrafting': 375,
+    'Leatherworking': 375, 
+    'Tailoring': 375, 
 }
 
 all_ok_professions = ('Jewelcrafting', 'Engineering', 'Blacksmithing', 'Tailoring', 'Leatherworking', 'Inscription', 'Enchanting', 'Alchemy')

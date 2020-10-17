@@ -1,4 +1,8 @@
 from evaluate_player import *
 
-loadPlayerFile('Notlazyhands')
-checkPlayer('Notlazyhands')
+for key in players_speerspitze:
+    loadPlayerFile(key)
+    print(key)
+    checkPlayer(key)
+    print("----")
+

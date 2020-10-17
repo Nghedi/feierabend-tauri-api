@@ -34,5 +34,3 @@ def getPlayerReputation(name):
     ou = f.read().decode('utf-8')
     outputdata = json.loads(ou)
     return outputdata
-
-getPlayerData('Nghedk')

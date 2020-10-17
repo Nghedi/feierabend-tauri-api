@@ -5,6 +5,8 @@ from gems import *
 from professions import *
 from roster import *
 
+from tauri_stuff import *
+
 valid_professions = ok_professions
 
 def loadPlayerFile(name):
@@ -13,11 +15,20 @@ def loadPlayerFile(name):
 
 def checkProfessions(playerdata, role):
     return_value = True
-    return_value = return_value and professionIsValid(playerdata['primary_trade_skill_1']['name'],role) 
-    return_value = return_value and professionIsValid(playerdata['primary_trade_skill_2']['name'],role) 
+    if 'primary_trade_skill_1' not in playerdata:
+        print("WHOOT Empty Profession")
+        return_value = False
+    else:
+        return_value = return_value and professionIsValid(playerdata['primary_trade_skill_1']['name'],role) 
+        return_value = return_value and professionIsValid(playerdata['primary_trade_skill_2']['name'],role) 
 
-    return_value = return_value and professionIsHighEnough(playerdata['primary_trade_skill_1']['name'],playerdata['primary_trade_skill_1']['value'])
-    return_value = return_value and professionIsHighEnough(playerdata['primary_trade_skill_2']['name'],playerdata['primary_trade_skill_2']['value'])
+    if 'primary_trade_skill_2' not in playerdata:
+        print("WHOOT Empty Profession")
+        return_value = False
+    else:
+        return_value = return_value and professionIsHighEnough(playerdata['primary_trade_skill_1']['name'],playerdata['primary_trade_skill_1']['value'])
+        return_value = return_value and professionIsHighEnough(playerdata['primary_trade_skill_2']['name'],playerdata['primary_trade_skill_2']['value'])
+
     if (return_value == True):
         print("Professions alright")
 
@@ -39,10 +50,12 @@ def checkGems():
 def checkEnchants(playerdata, role):
     enchantable_slots = (0, 2, 3, 4, 7, 8, 10, 11, 16, 17,)
 
-    if (playerdata['primary_trade_skill_1']['name'] == "Enchanting)"
-       or playerdata['primary_trade_skill_2']['name'] == "Enchanting)"):
-        enchantable_slots = enchantable_slots.append(12)
-        enchantable_slots = enchantable_slots.append(13)
+    if 'primary_trade_skill_1' in playerdata:
+        if 'primary_trade_skill_2' in playerdata:
+            if (playerdata['primary_trade_skill_1']['name'] == "Enchanting)"
+               or playerdata['primary_trade_skill_2']['name'] == "Enchanting)"):
+                enchantable_slots = enchantable_slots.append(12)
+                enchantable_slots = enchantable_slots.append(13)
 
     for slot in enchantable_slots: 
         if not playerdata['characterItems'][slot]['ench']:
